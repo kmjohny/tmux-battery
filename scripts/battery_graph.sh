@@ -4,20 +4,30 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source "$CURRENT_DIR/helpers.sh"
 
+full='◼';
+empty='◻';
+
+count=10;
+
+charge=$1;
+
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+color=($RED $RED $RED $YELLOW $YELLOW $YELLOW $YELLOW $GREEN $GREEN $GREEN)
+
 print_graph() {
-	if [ -z "$1" ]; then
-		echo ""
-	elif [ "$1" -lt "20" ]; then
-		echo "▁"
-	elif [ "$1" -lt "40" ]; then
-		echo "▂"
-	elif [ "$1" -lt "60" ]; then
-		echo "▃"
-	elif [ "$1" -lt "80" ]; then
-		echo "▅"
-	else
-		echo "▇"
-	fi
+  for ((i=0; i < $count; i++))
+  do
+    if [ "$i" -le "$(($1/10))" ]
+    then
+      printf ${color[$i]}$full${NC}
+    else
+      printf ${color[$i]}$empty${NC}
+    fi
+done
 }
 
 main() {
