@@ -1,3 +1,12 @@
+color_palette=(130 130 130 226 226 226 226 82 82 82);
+
+# color_palette=(red red red cyan cyan cyan cyan green green green);
+
+get_color() {
+  echo "#[fg=colour${color_palette[$1]},bold]"
+  # echo "#[fg=${color_palette[$1]}]"
+}
+
 get_tmux_option() {
 	local option="$1"
 	local default_value="$2"
